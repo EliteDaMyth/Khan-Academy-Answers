@@ -4,7 +4,7 @@
 // @version      0.1.4
 // @description  try to take over the world!
 // @author       Lemons
-// @match        *://www.khanacademy.org/*
+// @match        *://*.khanacademy.org/*
 // @run-at       document-start
 // @grant        none
 // ==/UserScript==
@@ -18,6 +18,7 @@ Response.prototype.text = function() {
             res = JSON.parse(res);
 
             var json = JSON.parse(res.data.assessmentItem.item.itemData);
+            var question = json.question.content;
             var widgets = json.question.widgets;
 
             var answers = [];
@@ -50,7 +51,7 @@ Response.prototype.text = function() {
                 answers.push(answer);
             });
 
-            console.log('ANSWER:', answers.join(', '));
+            console.log(question + '\nANSWER:', answers.join(', '));
         });
     }
 
